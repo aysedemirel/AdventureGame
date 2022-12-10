@@ -1,4 +1,4 @@
-package adventure.game.character.weapon;
+package adventure.game.weapon;
 
 public interface Weapon {
 

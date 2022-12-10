@@ -20,4 +20,9 @@ public class Samurai implements GameCharacter {
   public int getDamage() {
     return DAMAGE;
   }
+
+  @Override
+  public String getName() {
+    return "Samurai";
+  }
 }

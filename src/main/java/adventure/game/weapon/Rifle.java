@@ -1,4 +1,4 @@
-package adventure.game.character.weapon;
+package adventure.game.weapon;
 
 public class Rifle implements Weapon {
 

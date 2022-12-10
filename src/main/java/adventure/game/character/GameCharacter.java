@@ -7,4 +7,6 @@ public interface GameCharacter {
   int getMoney();
 
   int getDamage();
+
+  String getName();
 }

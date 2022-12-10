@@ -20,4 +20,9 @@ public class Knight implements GameCharacter {
   public int getDamage() {
     return DAMAGE;
   }
+
+  @Override
+  public String getName() {
+    return "Knight";
+  }
 }
