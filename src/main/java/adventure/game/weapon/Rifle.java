@@ -2,8 +2,8 @@ package adventure.game.weapon;
 
 public class Rifle implements Weapon {
 
-  private static final int DAMAGE = 7;
-  private static final int MONEY = 45;
+  public static final int DAMAGE = 7;
+  public static final int MONEY = 45;
 
   @Override
   public int giveDamage() {

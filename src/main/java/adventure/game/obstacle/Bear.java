@@ -2,13 +2,16 @@ package adventure.game.obstacle;
 
 public class Bear implements Obstacle {
 
-  private static final int DAMAGE = 7;
-  private static final int HEALTHY = 20;
-  private static final int MONEY = 12;
+  public static final int DAMAGE = 7;
+  public static final int HEALTHY = 20;
+  public static final int MONEY = 12;
+
+  private int health = HEALTHY;
 
   @Override
-  public int giveDamage() {
-    return DAMAGE;
+  public int giveDamage(int damage) {
+    health -= damage;
+    return health;
   }
 
   @Override

@@ -6,9 +6,13 @@ public class Vampire implements Obstacle {
   private static final int HEALTHY = 14;
   private static final int MONEY = 7;
 
+  private int health = HEALTHY;
+
   @Override
-  public int giveDamage() {
-    return DAMAGE;
+  public int giveDamage(int damage) {
+
+    health -= damage;
+    return health;
   }
 
   @Override

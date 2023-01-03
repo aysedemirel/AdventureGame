@@ -2,9 +2,9 @@ package adventure.game.obstacle;
 
 public interface Obstacle {
 
- int giveDamage();
+  int giveDamage(int damage);
 
- int getHealthy();
+  int getHealthy();
 
- int giveMoney();
+  int giveMoney();
 }

@@ -1,6 +1,12 @@
 package adventure.game.player;
 
+import adventure.game.armor.LightArmor;
+import adventure.game.armor.MidArmor;
+import adventure.game.armor.WeightyArmor;
 import adventure.game.character.GameCharacter;
+import adventure.game.weapon.Handgun;
+import adventure.game.weapon.Rifle;
+import adventure.game.weapon.Sword;
 
 public class Player {
 
@@ -29,11 +35,20 @@ public class Player {
   }
 
   public int getDamage() {
-    return damage;
+    int totalDamage = damage;
+    totalDamage += handgunCount * Handgun.DAMAGE;
+    totalDamage += rifleCount * Rifle.DAMAGE;
+    totalDamage += swordCount * Sword.DAMAGE;
+    return totalDamage;
   }
 
   public void setDamage(int damage) {
     this.damage = damage;
+  }
+
+  public int giveDamage(int damage) {
+    healthy -= damage;
+    return healthy;
   }
 
   public int getMoney() {
@@ -44,8 +59,16 @@ public class Player {
     this.money = money;
   }
 
+  public void addMoney(int m) {
+    money += m;
+  }
+
   public int getHealthy() {
-    return healthy;
+    int totalHealth = healthy;
+    totalHealth += lightArmorCount * LightArmor.DAMAGE;
+    totalHealth += midArmorCount * MidArmor.DAMAGE;
+    totalHealth += heavyArmorCount * WeightyArmor.DAMAGE;
+    return totalHealth;
   }
 
   public void setHealthy(int healthy) {

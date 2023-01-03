@@ -2,8 +2,8 @@ package adventure.game.armor;
 
 public class WeightyArmor implements Armor {
 
-  private static final int DAMAGE = 5;
-  private static final int MONEY = 45;
+  public static final int DAMAGE = 5;
+  public static final int MONEY = 45;
 
   @Override
   public int giveDamage() {

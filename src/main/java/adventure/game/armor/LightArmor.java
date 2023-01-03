@@ -2,8 +2,8 @@ package adventure.game.armor;
 
 public class LightArmor implements Armor {
 
-  private static final int DAMAGE = 1;
-  private static final int MONEY = 15;
+  public static final int DAMAGE = 1;
+  public static final int MONEY = 15;
 
   @Override
   public int giveDamage() {

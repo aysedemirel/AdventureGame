@@ -2,8 +2,8 @@ package adventure.game.weapon;
 
 public class Sword implements Weapon {
 
-  private static final int DAMAGE = 3;
-  private static final int MONEY = 35;
+  public static final int DAMAGE = 3;
+  public static final int MONEY = 35;
 
   @Override
   public int giveDamage() {

@@ -20,9 +20,7 @@ public class Game {
 
   public Game() {
     scanner = new Scanner(System.in);
-    location = new SafeLocation();
   }
-
 
   public void createPlayer(char ch) {
     switch (ch) {
@@ -31,7 +29,8 @@ public class Game {
       case 'k' -> player = new Player(new Knight());
       default -> player = new Player();
     }
-    resetHealthy();
+    location = new SafeLocation(player);
+    SafeLocation.resetHealthy(player);
   }
 
   public void startGame() {
@@ -43,9 +42,14 @@ public class Game {
           refreshLocation(ch);
         }
       }
+      System.out.println("Game over...");
+      System.out.println("Do you want to start again ? Yes(y)");
+      char ch = scanner.next().toLowerCase().charAt(0);
+      if (ch == 'y') {
+        startGame();
+      }
     }).start();
   }
-
 
   private void selectLocation() {
     String st = """
@@ -62,21 +66,12 @@ public class Game {
 
   private void refreshLocation(char ch) {
     switch (ch) {
-      case '1' -> location = new SafeLocation();
+      case '1' -> location = new SafeLocation(player);
       case '2' -> location = new ToolStoreLocation(player);
       case '3' -> location = new Cave();
       case '4' -> location = new Forest();
-      case '5' -> location = new River();
+      case '5' -> location = new River(player);
       default -> location.onLocation();
-    }
-  }
-
-  private void resetHealthy() {
-    switch (player.getName()) {
-      case "Knight" -> player.setHealthy(Knight.HEALTHY);
-      case "Samurai" -> player.setHealthy(Samurai.HEALTHY);
-      case "Archer" -> player.setHealthy(Archer.HEALTHY);
-      default -> player.setHealthy(0);
     }
   }
 }
