@@ -2,15 +2,13 @@ package adventure.game.obstacle;
 
 public class Vampire implements Obstacle {
 
-  private static final int DAMAGE = 4;
+  public static final int DAMAGE = 4;
+  public static final int MONEY = 7;
   private static final int HEALTHY = 14;
-  private static final int MONEY = 7;
-
   private int health = HEALTHY;
 
   @Override
   public int giveDamage(int damage) {
-
     health -= damage;
     return health;
   }

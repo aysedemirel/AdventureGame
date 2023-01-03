@@ -2,19 +2,16 @@ package adventure.game.location.battle;
 
 import adventure.game.obstacle.Bear;
 import adventure.game.player.Player;
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class River implements BattleLocation {
 
   private final Player player;
-  private final Scanner scanner;
   private boolean isMenuActive = false;
 
   private Bear[] randomBear;
 
   public River(Player player) {
-    scanner = new Scanner(System.in);
     this.player = player;
     onLocation();
   }
@@ -38,13 +35,9 @@ public class River implements BattleLocation {
     return false;
   }
 
+
   private void fight() {
-    System.out.println("Be careful!!!! Giant bear... Ohh how many:" + randomBear.length);
-    System.out.println(
-        "Do you want to fight or run away? "
-            + "Don't forget first shoot is yours, but you hit once bear will attack you!");
-    System.out.println("Fight (f)");
-    System.out.println("Change the location (c)");
+    showFightMenu();
     char ch = scanner.next().charAt(0);
     switch (ch) {
       case 'f' -> {
@@ -52,24 +45,18 @@ public class River implements BattleLocation {
         while (ch == 'f' && leftBear > 0) {
           int damage = player.getDamage();
           int monsterHealth = randomBear[leftBear - 1].giveDamage(damage);
-          if (monsterHealth <= 0) {
+          boolean isBearDead = fightWithBear(monsterHealth);
+          if (isBearDead) {
             leftBear--;
-            player.addMoney(Bear.MONEY);
-            System.out.println(
-                "Wooow you killed one bear. You earn " + Bear.MONEY + " your total money: "
-                    + player.getMoney());
             System.out.println("How many bears are alive: " + leftBear);
-          } else {
-            player.giveDamage(Bear.DAMAGE);
-            System.out.println("One attack from the bear : " + Bear.DAMAGE);
           }
-          System.out.println("Your left health : " + player.getHealthy());
           if (player.getHealthy() > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
             ch = scanner.next().charAt(0);
           }
         }
+        isMenuActive = false;
       }
       case 'c' -> {
         isMenuActive = false;
@@ -81,13 +68,34 @@ public class River implements BattleLocation {
     }
   }
 
+  private void showFightMenu() {
+    System.out.println("Be careful!!!! Giant bear... Ohh how many:" + randomBear.length);
+    System.out.println(
+        "Do you want to fight or run away? "
+            + "Don't forget first shoot is yours, but you hit once bear will attack you!");
+    System.out.println("Fight (f)");
+    System.out.println("Change the location (c)");
+  }
+
+  private boolean fightWithBear(int monsterHealth) {
+    boolean isBearDead = false;
+    if (monsterHealth <= 0) {
+      player.addMoney(Bear.MONEY);
+      System.out.println(
+          "Wooow you killed one bear. You earn " + Bear.MONEY + " your total money: "
+              + player.getMoney());
+      isBearDead = true;
+    } else {
+      player.giveDamage(Bear.DAMAGE);
+      System.out.println("One attack from the bear : " + Bear.DAMAGE);
+    }
+    System.out.println("Your left health : " + player.getHealthy());
+    return isBearDead;
+  }
+
   @Override
   public void showMenu() {
-    StringBuilder st = new StringBuilder();
-    st.append("You are in RIVER...");
-    st.append("Look around (1)");
-    st.append("Return main menu (2)");
-    System.out.println(st);
+    showMenu("RIVER");
     isMenuActive = true;
   }
 

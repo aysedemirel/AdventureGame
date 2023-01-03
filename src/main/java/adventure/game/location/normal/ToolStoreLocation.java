@@ -1,16 +1,13 @@
 package adventure.game.location.normal;
 
 import adventure.game.player.Player;
-import java.util.Scanner;
 
 public class ToolStoreLocation implements NormalLocation {
 
-  private final Scanner scanner;
   private final Player player;
   private boolean isMenuActive = false;
 
   public ToolStoreLocation(Player player) {
-    scanner = new Scanner(System.in);
     this.player = player;
     onLocation();
   }
