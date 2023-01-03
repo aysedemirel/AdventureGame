@@ -2,5 +2,10 @@ package adventure.game.location;
 
 public interface Location {
 
-  void onLocation();
+  boolean onLocation();
+
+  void showMenu();
+
+  boolean isMenuActive();
+
 }
