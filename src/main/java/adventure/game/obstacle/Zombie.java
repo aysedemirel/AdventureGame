@@ -2,9 +2,9 @@ package adventure.game.obstacle;
 
 public class Zombie implements Obstacle {
 
-  private static final int DAMAGE = 3;
+  public static final int DAMAGE = 3;
+  public static final int MONEY = 4;
   private static final int HEALTHY = 10;
-  private static final int MONEY = 4;
   private int health = HEALTHY;
 
   @Override

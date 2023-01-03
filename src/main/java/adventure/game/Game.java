@@ -68,7 +68,7 @@ public class Game {
     switch (ch) {
       case '1' -> location = new SafeLocation(player);
       case '2' -> location = new ToolStoreLocation(player);
-      case '3' -> location = new Cave();
+      case '3' -> location = new Cave(player);
       case '4' -> location = new Forest(player);
       case '5' -> location = new River(player);
       default -> location.onLocation();
