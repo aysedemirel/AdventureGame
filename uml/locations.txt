@@ -1,0 +1,23 @@
+Güvenli ev:
+- özellik: can yenileniyor
+
+Mağaza:
+- özellik: eşya satın alma
+- silah: tabanca, kılıç, tüfek
+- zırh: hafif, orta, ağır
+
+Mağara:
+- canavar: zombi (1-3)
+- özellik: savaş + ganimet
+- eşya: yemek
+
+Orman:
+- canavar: vampir(1-3)
+- özellik: savaş + ganimet
+- eşya: odun
+
+Nehir:
+- canavar: ayı(1-3)
+- özellik: savaş + ganimet
+- eşya: su
+
