@@ -12,4 +12,6 @@ public interface Location {
 
   boolean isMenuActive();
 
+  String getName();
+
 }

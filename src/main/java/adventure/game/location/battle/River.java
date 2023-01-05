@@ -45,6 +45,7 @@ public class River implements BattleLocation {
         while (ch == 'f' && leftBear > 0) {
           int damage = player.getDamage();
           int monsterHealth = randomBear[leftBear - 1].giveDamage(damage);
+          System.out.println("Your damage: " + damage);
           boolean isBearDead = fightWithBear(monsterHealth);
           if (isBearDead) {
             leftBear--;
@@ -119,4 +120,8 @@ public class River implements BattleLocation {
     return isMenuActive;
   }
 
+  @Override
+  public String getName() {
+    return "RIVER";
+  }
 }

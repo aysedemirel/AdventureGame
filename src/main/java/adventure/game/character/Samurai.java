@@ -9,7 +9,7 @@ public class Samurai implements GameCharacter {
   public static String getCharMenu() {
     Samurai samurai = new Samurai();
     return String.format("""             
-        | Name: %s (s) | Damage: %d | Health: %d | Money: %d |
+        | %s (s) | Damage: %d | Health: %d | Money: %d |
         +--------------+------------+------------+-----------+
         """, samurai.getName(), samurai.getDamage(), samurai.getHealthy(), samurai.getMoney());
   }

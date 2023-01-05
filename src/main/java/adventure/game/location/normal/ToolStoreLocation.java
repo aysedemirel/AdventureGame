@@ -37,12 +37,14 @@ public class ToolStoreLocation implements NormalLocation {
   public void showMenu() {
     String st = String.format("""
             +------------------------------------------------------------------------------------------------------------------------+
-            | Do you want to buy a tool (enter 'c' to cancel) ?                                                                      |
+            Your money: %d
+            Do you want to buy a tool (enter 'c' to cancel) ?
             +----------+------------------------------------+----------------------------------+-------------------------------------+
             | Weapons: | HANDGUN(h)--> damage: %d money: %d | RIFLE(r)--> damage: %d money: %d | SWORD(s)--> damage: %d money: %d    |
             +----------+------------------------------------+----------------------------------+-------------------------------------+
             | Armors:  | LIGHT(1)--> damage: %d money: %d   | MID(2)--> damage: %d money: %d  | WEIGHTY(3)--> damage: %d money: %d   |
             +----------+------------------------------------+----------------------------------+-------------------------------------+""",
+        player.getMoney(),
         Handgun.DAMAGE, Handgun.MONEY, Rifle.DAMAGE, Rifle.MONEY, Sword.DAMAGE, Sword.MONEY,
         LightArmor.DAMAGE, LightArmor.MONEY, MidArmor.DAMAGE, MidArmor.MONEY, WeightyArmor.DAMAGE,
         WeightyArmor.MONEY);
@@ -57,14 +59,43 @@ public class ToolStoreLocation implements NormalLocation {
 
   public void buy(char ch) {
     switch (ch) {
-      case 'h' -> player.addHandgun();
-      case 'r' -> player.addRifle();
-      case 's' -> player.addSword();
-      case '1' -> player.addLightArmor();
-      case '2' -> player.addMidArmor();
-      case '3' -> player.addHeavyArmor();
+      case 'h' -> {
+        if (player.isMoneyEnough(Handgun.MONEY)) {
+          player.addHandgun();
+        }
+      }
+      case 'r' -> {
+        if (player.isMoneyEnough(Rifle.MONEY)) {
+          player.addRifle();
+        }
+      }
+      case 's' -> {
+        if (player.isMoneyEnough(Sword.MONEY)) {
+          player.addSword();
+        }
+      }
+      case '1' -> {
+        if (player.isMoneyEnough(LightArmor.MONEY)) {
+          player.addLightArmor();
+        }
+      }
+      case '2' -> {
+        if (player.isMoneyEnough(MidArmor.MONEY)) {
+          player.addMidArmor();
+        }
+      }
+      case '3' -> {
+        if (player.isMoneyEnough(WeightyArmor.MONEY)) {
+          player.addHeavyArmor();
+        }
+      }
       default -> System.out.println("Please enter a correct input...");
     }
     isMenuActive = false;
+  }
+
+  @Override
+  public String getName() {
+    return "TOOL STORE";
   }
 }

@@ -40,4 +40,9 @@ public class SafeLocation implements NormalLocation {
   public boolean isMenuActive() {
     return false;
   }
+
+  @Override
+  public String getName() {
+    return "SAFE AREA";
+  }
 }

@@ -9,7 +9,7 @@ public class Archer implements GameCharacter {
   public static String getCharMenu() {
     Archer archer = new Archer();
     return String.format("""             
-        | Name: %s (a) | Damage: %d | Health: %d | Money: %d |
+        | %s (a) | Damage: %d | Health: %d | Money: %d |
         +--------------+------------+------------+-----------+
         """, archer.getName(), archer.getDamage(), archer.getHealthy(), archer.getMoney());
   }

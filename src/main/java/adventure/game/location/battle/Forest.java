@@ -43,6 +43,7 @@ public class Forest implements BattleLocation {
         while (ch == 'f' && leftVampire > 0) {
           int damage = player.getDamage();
           int monsterHealth = randomVampire[leftVampire - 1].giveDamage(damage);
+          System.out.println("Your damage: " + damage);
           boolean isVampireDead = fightWithVampire(monsterHealth);
           if (isVampireDead) {
             leftVampire--;
@@ -53,7 +54,7 @@ public class Forest implements BattleLocation {
                 "Wow you killed all of the vampires in the forest. So you earned 'WOODEN'...");
             player.addWooden();
           }
-          if (player.getHealthy() > 0) {
+          if (player.getHealthy() > 0 && leftVampire > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
             ch = scanner.next().charAt(0);
@@ -115,5 +116,10 @@ public class Forest implements BattleLocation {
   @Override
   public boolean isMenuActive() {
     return isMenuActive;
+  }
+
+  @Override
+  public String getName() {
+    return "FOREST";
   }
 }

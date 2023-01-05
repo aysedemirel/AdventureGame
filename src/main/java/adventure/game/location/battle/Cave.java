@@ -43,6 +43,7 @@ public class Cave implements BattleLocation {
         while (ch == 'f' && leftZombie > 0) {
           int damage = player.getDamage();
           int monsterHealth = randomZombie[leftZombie - 1].giveDamage(damage);
+          System.out.println("Your damage: " + damage);
           boolean isZombieDead = fightWithZombie(monsterHealth);
           if (isZombieDead) {
             leftZombie--;
@@ -53,7 +54,7 @@ public class Cave implements BattleLocation {
                 "Wow you killed all of the zombies in the cave. So you earned 'FOOD'...");
             player.addFood();
           }
-          if (player.getHealthy() > 0) {
+          if (player.getHealthy() > 0 && leftZombie > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
             ch = scanner.next().charAt(0);
@@ -115,5 +116,10 @@ public class Cave implements BattleLocation {
   @Override
   public boolean isMenuActive() {
     return isMenuActive;
+  }
+
+  @Override
+  public String getName() {
+    return "CAVE";
   }
 }

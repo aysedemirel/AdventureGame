@@ -9,7 +9,7 @@ public class Knight implements GameCharacter {
   public static String getCharMenu() {
     Knight knight = new Knight();
     return String.format("""             
-        | Name: %s (k) | Damage: %d | Health: %d | Money: %d |
+        | %s (k) | Damage: %d | Health: %d | Money: %d |
         +--------------+------------+------------+-----------+
         """, knight.getName(), knight.getDamage(), knight.getHealthy(), knight.getMoney());
   }

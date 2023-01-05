@@ -27,7 +27,6 @@ public class Game {
     System.out.println("Choose character:");
     char ch = scanner.next().toLowerCase().charAt(0);
     createPlayer(ch);
-    System.out.println("-------------------");
   }
 
   private String getSelectCharMenu() {
@@ -77,18 +76,22 @@ public class Game {
   }
 
   private void selectLocation() {
-    String st = """
-        +--------------------------------------+
-        | Do you want to change your location? |
-        +--------------------------------------+
-        | Safe area (1)                        |
-        | Tool store (2)                       |
-        | Cave (3)                             |
-        | Forest (4)                           |
-        | River (5)                            |
-        | Stay same location (6)               |
-        | Print player info (7)                |
-        +--------------------------------------+""";
+    String st = String.format("""
+            +--------------------------------------+
+            You are in %s
+            Do you want to change your location?
+            +--------------------------------------+
+            | Safe area (1)                        |
+            | Tool store (2)                       |
+            | Cave (3)     |%s|                    |
+            | Forest (4)   |%s|                    |
+            | River (5)    |%s|                    |
+            | Stay same location (6)               |
+            | Print player info (7)                |
+            +--------------------------------------+""",
+        location.getName(), player.isCaveFinish() ? "OK" : "NOK",
+        player.isForestFinish() ? "OK" : "NOK",
+        player.isRiverFinish() ? "OK" : "NOK");
     System.out.println(st);
   }
 
@@ -99,6 +102,7 @@ public class Game {
       case '3' -> location = new Cave(player);
       case '4' -> location = new Forest(player);
       case '5' -> location = new River(player);
+      case '7' -> player.printPlayer();
       default -> location.onLocation();
     }
   }

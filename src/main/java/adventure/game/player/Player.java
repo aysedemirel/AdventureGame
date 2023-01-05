@@ -7,6 +7,7 @@ import adventure.game.character.GameCharacter;
 import adventure.game.weapon.Handgun;
 import adventure.game.weapon.Rifle;
 import adventure.game.weapon.Sword;
+import java.util.Locale;
 
 public class Player {
 
@@ -87,31 +88,37 @@ public class Player {
 
   public void addLightArmor() {
     lightArmorCount++;
+    money -= LightArmor.MONEY;
     printPlayer();
   }
 
   public void addMidArmor() {
     midArmorCount++;
+    money -= MidArmor.MONEY;
     printPlayer();
   }
 
   public void addHeavyArmor() {
     heavyArmorCount++;
+    money -= LightArmor.MONEY;
     printPlayer();
   }
 
   public void addHandgun() {
     handgunCount++;
+    money -= Handgun.MONEY;
     printPlayer();
   }
 
   public void addRifle() {
     rifleCount++;
+    money -= Rifle.MONEY;
     printPlayer();
   }
 
   public void addSword() {
     swordCount++;
+    money -= Sword.MONEY;
     printPlayer();
   }
 
@@ -161,16 +168,37 @@ public class Player {
   public void printPlayer() {
     String st = String.format("""   
             +------------+-------------+-----------------+------------+
-            |                       Player %s                         |
+                                   Player %s
             +------------+-------------+-----------------+------------+
             | Health: %d | Handgun: %d | Light armor: %d | Water: %d  |
             | Damage: %d | Rifle: %d   | Mid armor: %d   | Food: %d   |
             | Money: %d  | Sword: %d   | Heavy armor: %d | Wooden: %d |
             +------------+-------------+-----------------+------------+""",
-        name,
+        name.toUpperCase(Locale.ENGLISH),
         healthy, handgunCount, lightArmorCount, waterCount,
         damage, rifleCount, midArmorCount, foodCount,
         money, swordCount, heavyArmorCount, woodenCount);
     System.out.println(st);
+  }
+
+  public boolean isCaveFinish() {
+    return foodCount > 0;
+  }
+
+  public boolean isForestFinish() {
+    return woodenCount > 0;
+  }
+
+  public boolean isRiverFinish() {
+    return waterCount > 0;
+  }
+
+  public boolean isMoneyEnough(int money) {
+    if (getMoney() >= money) {
+      return true;
+    } else {
+      System.out.println("Sorry, You don't have enough money...");
+      return false;
+    }
   }
 }
