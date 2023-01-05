@@ -22,6 +22,20 @@ public class Game {
     scanner = new Scanner(System.in);
   }
 
+  public void selectCharacter() {
+    System.out.print(getSelectCharMenu());
+    System.out.println("Choose character:");
+    char ch = scanner.next().toLowerCase().charAt(0);
+    createPlayer(ch);
+    System.out.println("-------------------");
+  }
+
+  private String getSelectCharMenu() {
+    return Samurai.getCharMenu()
+        + Archer.getCharMenu()
+        + Knight.getCharMenu();
+  }
+
   public void createPlayer(char ch) {
     switch (ch) {
       case 's' -> player = new Player(new Samurai());
@@ -40,27 +54,41 @@ public class Game {
           selectLocation();
           char ch = scanner.next().toLowerCase().charAt(0);
           refreshLocation(ch);
+          if (player.isWin()) {
+            System.out.println("You WIN !!!!! ");
+            break;
+          }
         }
       }
-      System.out.println("Game over...");
-      System.out.println("Do you want to start again ? Yes(y)");
-      char ch = scanner.next().toLowerCase().charAt(0);
-      if (ch == 'y') {
-        startGame();
+      if (player.getHealthy() == 0) {
+        System.out.println("Game over...");
       }
+      restart();
     }).start();
+  }
+
+  private void restart() {
+    System.out.println("Do you want to start again ? Yes(y)");
+    char ch = scanner.next().toLowerCase().charAt(0);
+    if (ch == 'y') {
+      selectCharacter();
+      startGame();
+    }
   }
 
   private void selectLocation() {
     String st = """
-        Do you want to change your location?
-         Safe area (1)
-         Tool store (2)
-         Cave (3)
-         Forest (4)
-         River (5)
-         Stay same location (6)
-         ------------------------""";
+        +--------------------------------------+
+        | Do you want to change your location? |
+        +--------------------------------------+
+        | Safe area (1)                        |
+        | Tool store (2)                       |
+        | Cave (3)                             |
+        | Forest (4)                           |
+        | River (5)                            |
+        | Stay same location (6)               |
+        | Print player info (7)                |
+        +--------------------------------------+""";
     System.out.println(st);
   }
 

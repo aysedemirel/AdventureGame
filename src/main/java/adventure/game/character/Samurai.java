@@ -8,9 +8,10 @@ public class Samurai implements GameCharacter {
 
   public static String getCharMenu() {
     Samurai samurai = new Samurai();
-    return "Name: " + samurai.getName() + " (s): " + "Damage:"
-        + samurai.getDamage() + "----" + "Health:" + samurai.getHealthy() + "----"
-        + "Money: " + samurai.getMoney() + "\n";
+    return String.format("""             
+        | Name: %s (s) | Damage: %d | Health: %d | Money: %d |
+        +--------------+------------+------------+-----------+
+        """, samurai.getName(), samurai.getDamage(), samurai.getHealthy(), samurai.getMoney());
   }
 
   @Override

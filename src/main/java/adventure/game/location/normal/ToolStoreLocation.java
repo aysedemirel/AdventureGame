@@ -1,6 +1,12 @@
 package adventure.game.location.normal;
 
+import adventure.game.armor.LightArmor;
+import adventure.game.armor.MidArmor;
+import adventure.game.armor.WeightyArmor;
 import adventure.game.player.Player;
+import adventure.game.weapon.Handgun;
+import adventure.game.weapon.Rifle;
+import adventure.game.weapon.Sword;
 
 public class ToolStoreLocation implements NormalLocation {
 
@@ -21,8 +27,7 @@ public class ToolStoreLocation implements NormalLocation {
     } else if (ch != 'h' && ch != 'r' && ch != 's' && ch != '1' && ch != '2' && ch != '3') {
       System.out.println("Please enter correct key to take an action...");
       return onLocation();
-    }
-    if (ch != 'c') {
+    } else {
       buy(ch);
     }
     return false;
@@ -30,9 +35,17 @@ public class ToolStoreLocation implements NormalLocation {
 
   @Override
   public void showMenu() {
-    String st = "Do you want to buy a tool (enter 'c' to cancel) ?"
-        + "Weapons: Handgun(h), Rifle(r), Sword(s)"
-        + "Armors: Light(1), Mid(2), Weighty(3)";
+    String st = String.format("""
+            +------------------------------------------------------------------------------------------------------------------------+
+            | Do you want to buy a tool (enter 'c' to cancel) ?                                                                      |
+            +----------+------------------------------------+----------------------------------+-------------------------------------+
+            | Weapons: | HANDGUN(h)--> damage: %d money: %d | RIFLE(r)--> damage: %d money: %d | SWORD(s)--> damage: %d money: %d    |
+            +----------+------------------------------------+----------------------------------+-------------------------------------+
+            | Armors:  | LIGHT(1)--> damage: %d money: %d   | MID(2)--> damage: %d money: %d  | WEIGHTY(3)--> damage: %d money: %d   |
+            +----------+------------------------------------+----------------------------------+-------------------------------------+""",
+        Handgun.DAMAGE, Handgun.MONEY, Rifle.DAMAGE, Rifle.MONEY, Sword.DAMAGE, Sword.MONEY,
+        LightArmor.DAMAGE, LightArmor.MONEY, MidArmor.DAMAGE, MidArmor.MONEY, WeightyArmor.DAMAGE,
+        WeightyArmor.MONEY);
     System.out.println(st);
     isMenuActive = true;
   }

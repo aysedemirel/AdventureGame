@@ -48,6 +48,11 @@ public class Cave implements BattleLocation {
             leftZombie--;
             System.out.println("How many zombies are alive: " + leftZombie);
           }
+          if (leftZombie == 0 && player.getHealthy() > 0) {
+            System.out.println(
+                "Wow you killed all of the zombies in the cave. So you earned 'FOOD'...");
+            player.addFood();
+          }
           if (player.getHealthy() > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
@@ -67,21 +72,31 @@ public class Cave implements BattleLocation {
   }
 
   private void showFightMenu() {
-    System.out.println("Be careful!!!! Zombieee... Ohh how many:" + randomZombie.length);
-    System.out.println(
-        "Do you want to fight or run away? "
-            + "Don't forget first shoot is yours, but you attack once, the zombie will attack you!");
-    System.out.println("Fight (f)");
-    System.out.println("Change the location (c)");
+    String st = String.format("""
+            +-------------------------------------------------------------------------------------+
+            |                     Be careful!!!! Zombieee... Ohh how many: %d                     |
+            +-------------------------------------------------------------------------------------+
+            | Do you want to fight or run away?                                                   |
+            | Don't forget first shoot is yours, but you attack once, the zombie will attack you! |
+            | Fight (f)                                                                           |
+            | Change the location (c)                                                             |
+            +-------------------------------------------------------------------------------------+""",
+        randomZombie.length);
+    System.out.println(st);
   }
 
   private boolean fightWithZombie(int monsterHealth) {
     boolean isZombieDead = false;
     if (monsterHealth <= 0) {
       player.addMoney(Zombie.MONEY);
-      System.out.println(
-          "Wooow you killed one zombie. You earn " + Zombie.MONEY + " your total money: "
-              + player.getMoney());
+      String st = String.format("""
+          +------------------------------+
+          | Wooow you killed one zombie. |
+          +------------------------------+
+          | You earned %d                |
+          | Your total money: %d         |
+          +------------------------------+""", Zombie.MONEY, player.getMoney());
+      System.out.println(st);
       isZombieDead = true;
     } else {
       player.giveDamage(Zombie.DAMAGE);

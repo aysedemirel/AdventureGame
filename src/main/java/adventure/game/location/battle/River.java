@@ -50,7 +50,12 @@ public class River implements BattleLocation {
             leftBear--;
             System.out.println("How many bears are alive: " + leftBear);
           }
-          if (player.getHealthy() > 0) {
+          if (leftBear == 0 && player.getHealthy() > 0) {
+            System.out.println(
+                "Wow you killed all of the bears in the river. So you earned 'WATER'...");
+            player.addWater();
+          }
+          if (player.getHealthy() > 0 && leftBear > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
             ch = scanner.next().charAt(0);
@@ -69,21 +74,31 @@ public class River implements BattleLocation {
   }
 
   private void showFightMenu() {
-    System.out.println("Be careful!!!! Giant bear... Ohh how many:" + randomBear.length);
-    System.out.println(
-        "Do you want to fight or run away? "
-            + "Don't forget first shoot is yours, but you hit once bear will attack you!");
-    System.out.println("Fight (f)");
-    System.out.println("Change the location (c)");
+    String st = String.format("""      
+            +----------------------------------------------------------------------------+
+            |                 Be careful!!!! Giant bear... Ohh how many: %d              |
+            +----------------------------------------------------------------------------+
+            | Do you want to fight or run away?                                          |
+            | Don't forget first shoot is yours, but you hit once, bear will attack you! |
+            | Fight (f)                                                                  |
+            | Change the location (c)                                                    |
+            +----------------------------------------------------------------------------+""",
+        randomBear.length);
+    System.out.println(st);
   }
 
   private boolean fightWithBear(int monsterHealth) {
     boolean isBearDead = false;
     if (monsterHealth <= 0) {
       player.addMoney(Bear.MONEY);
-      System.out.println(
-          "Wooow you killed one bear. You earn " + Bear.MONEY + " your total money: "
-              + player.getMoney());
+      String st = String.format("""
+          +----------------------------+
+          | Wooow you killed one bear. |
+          +----------------------------+
+          | You earned %d              |
+          | Your total money: %d       |
+          +----------------------------+""", Bear.MONEY, player.getMoney());
+      System.out.println(st);
       isBearDead = true;
     } else {
       player.giveDamage(Bear.DAMAGE);

@@ -5,11 +5,13 @@ import adventure.game.location.Location;
 public interface BattleLocation extends Location {
 
   default void showMenu(String location) {
-    StringBuilder st = new StringBuilder();
-    st.append("You are in ");
-    st.append(location);
-    st.append("Look around (1)");
-    st.append("Return main menu (2)");
+    String st = String.format("""
+        +----------------------+
+        |    You are in %s     |
+        +----------------------+
+        | Look around (1)      |
+        | Return main menu (2) |
+        +----------------------+""", location);
     System.out.println(st);
   }
 

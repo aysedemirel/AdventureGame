@@ -48,6 +48,11 @@ public class Forest implements BattleLocation {
             leftVampire--;
             System.out.println("How many vampires are alive: " + leftVampire);
           }
+          if (leftVampire == 0 && player.getHealthy() > 0) {
+            System.out.println(
+                "Wow you killed all of the vampires in the forest. So you earned 'WOODEN'...");
+            player.addWooden();
+          }
           if (player.getHealthy() > 0) {
             System.out.println(
                 "Do you want to change your location (c) or continue attacking(f) ?");
@@ -67,21 +72,31 @@ public class Forest implements BattleLocation {
   }
 
   private void showFightMenu() {
-    System.out.println("Be careful!!!! Vampireeee... Ohh how many:" + randomVampire.length);
-    System.out.println(
-        "Do you want to fight or run away? "
-            + "Don't forget first shoot is yours, but you attack once, the vampire will attack you!");
-    System.out.println("Fight (f)");
-    System.out.println("Change the location (c)");
+    String st = String.format("""
+            +---------------------------------------------------------------------------------------+
+            |                     Be careful!!!! Vampireeee... Ohh how many: %d                     |
+            +---------------------------------------------------------------------------------------+
+            | Do you want to fight or run away?                                                     |
+            | Don't forget first shoot is yours, but you attack once, the vampire will attack you!" |
+            | Fight (f)                                                                             |
+            | Change the location (c)                                                               |
+            +---------------------------------------------------------------------------------------+""",
+        randomVampire.length);
+    System.out.println(st);
   }
 
   private boolean fightWithVampire(int monsterHealth) {
     boolean isVampireDead = false;
     if (monsterHealth <= 0) {
       player.addMoney(Vampire.MONEY);
-      System.out.println(
-          "Wooow you killed one vampire. You earn " + Vampire.MONEY + " your total money: "
-              + player.getMoney());
+      String st = String.format("""  
+          +-------------------------------+
+          | Wooow you killed one vampire. |
+          +-------------------------------+
+          | You earned %d                 |
+          | Your total money: %d          |
+          +-------------------------------+""", Vampire.MONEY, player.getMoney());
+      System.out.println(st);
       isVampireDead = true;
     } else {
       player.giveDamage(Vampire.DAMAGE);

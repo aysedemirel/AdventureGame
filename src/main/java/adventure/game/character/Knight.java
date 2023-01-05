@@ -8,9 +8,10 @@ public class Knight implements GameCharacter {
 
   public static String getCharMenu() {
     Knight knight = new Knight();
-    return "Name: " + knight.getName() + " (k):" + "Damage:" + knight.getDamage()
-        + "----" + "Health:" + knight.getHealthy() + "----" + "Money: "
-        + knight.getMoney() + "\n";
+    return String.format("""             
+        | Name: %s (k) | Damage: %d | Health: %d | Money: %d |
+        +--------------+------------+------------+-----------+
+        """, knight.getName(), knight.getDamage(), knight.getHealthy(), knight.getMoney());
   }
 
   @Override

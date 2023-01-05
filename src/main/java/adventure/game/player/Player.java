@@ -10,6 +10,9 @@ import adventure.game.weapon.Sword;
 
 public class Player {
 
+  private int waterCount = 0;
+  private int woodenCount = 0;
+  private int foodCount = 0;
   private int damage;
   private int money;
   private int healthy;
@@ -20,7 +23,6 @@ public class Player {
   private int lightArmorCount = 0;
   private int midArmorCount = 0;
   private int heavyArmorCount = 0;
-
   private GameCharacter character;
 
   public Player() {
@@ -137,21 +139,38 @@ public class Player {
     return heavyArmorCount;
   }
 
+  public void addWater() {
+    waterCount++;
+    printPlayer();
+  }
+
+  public void addFood() {
+    foodCount++;
+    printPlayer();
+  }
+
+  public void addWooden() {
+    woodenCount++;
+    printPlayer();
+  }
+
+  public boolean isWin() {
+    return waterCount > 0 && foodCount > 0 && woodenCount > 0;
+  }
+
   public void printPlayer() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("Player ").append(name).append("\n");
-    sb.append("----------").append("\n");
-    sb.append("Health: ").append(healthy).append("\n");
-    sb.append("Damage: ").append(damage).append("\n");
-    sb.append("Money: ").append(money).append("\n");
-    sb.append("----------").append("\n");
-    sb.append("Handgun: ").append(handgunCount).append("\n");
-    sb.append("Rifle: ").append(rifleCount).append("\n");
-    sb.append("Sword: ").append(swordCount).append("\n");
-    sb.append("----------").append("\n");
-    sb.append("Light armor: ").append(lightArmorCount).append("\n");
-    sb.append("Mid armor: ").append(midArmorCount).append("\n");
-    sb.append("Heavy armor: ").append(heavyArmorCount).append("\n");
-    System.out.println(sb);
+    String st = String.format("""   
+            +------------+-------------+-----------------+------------+
+            |                       Player %s                         |
+            +------------+-------------+-----------------+------------+
+            | Health: %d | Handgun: %d | Light armor: %d | Water: %d  |
+            | Damage: %d | Rifle: %d   | Mid armor: %d   | Food: %d   |
+            | Money: %d  | Sword: %d   | Heavy armor: %d | Wooden: %d |
+            +------------+-------------+-----------------+------------+""",
+        name,
+        healthy, handgunCount, lightArmorCount, waterCount,
+        damage, rifleCount, midArmorCount, foodCount,
+        money, swordCount, heavyArmorCount, woodenCount);
+    System.out.println(st);
   }
 }

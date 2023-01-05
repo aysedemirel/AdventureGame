@@ -7,7 +7,6 @@ import adventure.game.player.Player;
 
 public class SafeLocation implements NormalLocation {
 
-  private final boolean isMenuActive = false;
   private final Player player;
 
   public SafeLocation(Player player) {
@@ -39,6 +38,6 @@ public class SafeLocation implements NormalLocation {
 
   @Override
   public boolean isMenuActive() {
-    return isMenuActive;
+    return false;
   }
 }
