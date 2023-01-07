@@ -9,15 +9,14 @@ Mağaza:
 Mağara:
 - canavar: zombi (1-3)
 - özellik: savaş + ganimet
-- eşya: yemek
+- eşya: yemek (tüm zombiler ölürse kazanılır)
 
 Orman:
 - canavar: vampir(1-3)
 - özellik: savaş + ganimet
-- eşya: odun
+- eşya: odun (tüm vampirler ölürse kazanılır)
 
 Nehir:
 - canavar: ayı(1-3)
 - özellik: savaş + ganimet
-- eşya: su
-
+- eşya: su (tüm ayılar ölürse kazanılır)
