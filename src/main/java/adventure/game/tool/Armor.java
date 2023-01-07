@@ -1,5 +1,8 @@
 package adventure.game.tool;
 
+/**
+ * @author aysedemireldeniz
+ */
 public enum Armor {
   LIGHT(1, 15),
   MID(3, 25),

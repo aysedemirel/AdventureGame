@@ -4,6 +4,9 @@ import adventure.game.monster.Bear;
 import adventure.game.player.Player;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class River extends BattleLocation {
 
   public River(Player player) {

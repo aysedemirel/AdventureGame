@@ -1,5 +1,8 @@
 package adventure.game;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Main {
 
   public static void main(String[] args) {

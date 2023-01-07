@@ -1,5 +1,8 @@
 package adventure.game.character;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Archer implements GameCharacter {
 
   private static final int HEALTHY = 18;

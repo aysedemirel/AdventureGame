@@ -4,13 +4,15 @@ import adventure.game.monster.Vampire;
 import adventure.game.player.Player;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Forest extends BattleLocation {
 
   public Forest(Player player) {
     this.player = player;
     onLocation();
   }
-
 
   @Override
   public void createMonsters() {

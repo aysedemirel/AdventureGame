@@ -1,5 +1,8 @@
 package adventure.game.character;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Knight implements GameCharacter {
 
   private static final int HEALTHY = 24;

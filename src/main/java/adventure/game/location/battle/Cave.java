@@ -4,6 +4,9 @@ import adventure.game.monster.Zombie;
 import adventure.game.player.Player;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Cave extends BattleLocation {
 
 
@@ -11,7 +14,6 @@ public class Cave extends BattleLocation {
     this.player = player;
     onLocation();
   }
-
 
   @Override
   public void createMonsters() {

@@ -1,5 +1,8 @@
 package adventure.game.tool;
 
+/**
+ * @author aysedemireldeniz
+ */
 public enum Weapon {
   HANDGUN(2, 25),
   RIFLE(7, 45),

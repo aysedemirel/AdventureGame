@@ -1,5 +1,8 @@
 package adventure.game.monster;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Zombie implements Monster {
 
   public static final int DAMAGE = 3;

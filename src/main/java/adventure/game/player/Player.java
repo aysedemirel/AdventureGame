@@ -5,6 +5,9 @@ import adventure.game.tool.Armor;
 import adventure.game.tool.Weapon;
 import java.util.Locale;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Player {
 
   private int waterCount = 0;

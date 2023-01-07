@@ -3,6 +3,9 @@ package adventure.game.location.normal;
 import adventure.game.location.Location;
 import adventure.game.player.Player;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class SafeLocation implements Location {
 
   private final Player player;

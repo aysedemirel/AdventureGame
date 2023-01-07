@@ -5,6 +5,9 @@ import adventure.game.player.Player;
 import adventure.game.tool.Armor;
 import adventure.game.tool.Weapon;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class ToolStoreLocation implements Location {
 
   private final Player player;

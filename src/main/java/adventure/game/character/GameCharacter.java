@@ -1,5 +1,8 @@
 package adventure.game.character;
 
+/**
+ * @author aysedemireldeniz
+ */
 public interface GameCharacter {
 
   int getHealthy();
@@ -9,5 +12,5 @@ public interface GameCharacter {
   int getDamage();
 
   String getName();
-  
+
 }

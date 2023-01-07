@@ -12,6 +12,9 @@ import adventure.game.location.normal.ToolStoreLocation;
 import adventure.game.player.Player;
 import java.util.Scanner;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Game {
 
   private final Scanner scanner;

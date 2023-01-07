@@ -4,6 +4,9 @@ import adventure.game.location.Location;
 import adventure.game.monster.Monster;
 import adventure.game.player.Player;
 
+/**
+ * @author aysedemireldeniz
+ */
 public abstract class BattleLocation implements Location {
 
   protected Player player;
@@ -41,7 +44,6 @@ public abstract class BattleLocation implements Location {
     }
     return leftMonster;
   }
-
 
   void showMenu(String location) {
     String st = String.format("""
