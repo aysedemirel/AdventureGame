@@ -42,7 +42,7 @@ public class Forest extends BattleLocation {
       System.out.println(st);
       isVampireDead = true;
     } else {
-      player.giveDamage(Vampire.DAMAGE);
+      player.attackToPlayer(Vampire.DAMAGE);
       System.out.println("One attack from the vampire : " + Vampire.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());

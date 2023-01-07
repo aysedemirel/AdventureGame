@@ -48,7 +48,7 @@ public class Player {
     this.damage = damage;
   }
 
-  public void giveDamage(int damage) {
+  public void attackToPlayer(int damage) {
     healthy -= damage;
   }
 

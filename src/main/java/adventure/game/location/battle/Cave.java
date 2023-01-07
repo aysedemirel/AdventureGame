@@ -43,7 +43,7 @@ public class Cave extends BattleLocation {
       System.out.println(st);
       isZombieDead = true;
     } else {
-      player.giveDamage(Zombie.DAMAGE);
+      player.attackToPlayer(Zombie.DAMAGE);
       System.out.println("One attack from the zombie : " + Zombie.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());

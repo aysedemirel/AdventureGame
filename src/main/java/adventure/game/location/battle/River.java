@@ -42,7 +42,7 @@ public class River extends BattleLocation {
       System.out.println(st);
       isBearDead = true;
     } else {
-      player.giveDamage(Bear.DAMAGE);
+      player.attackToPlayer(Bear.DAMAGE);
       System.out.println("One attack from the bear : " + Bear.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());
