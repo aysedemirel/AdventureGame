@@ -1,12 +1,8 @@
 package adventure.game.player;
 
-import adventure.game.armor.LightArmor;
-import adventure.game.armor.MidArmor;
-import adventure.game.armor.WeightyArmor;
 import adventure.game.character.GameCharacter;
-import adventure.game.weapon.Handgun;
-import adventure.game.weapon.Rifle;
-import adventure.game.weapon.Sword;
+import adventure.game.tool.Armor;
+import adventure.game.tool.Weapon;
 import java.util.Locale;
 
 public class Player {
@@ -39,9 +35,9 @@ public class Player {
 
   public int getDamage() {
     int totalDamage = damage;
-    totalDamage += handgunCount * Handgun.DAMAGE;
-    totalDamage += rifleCount * Rifle.DAMAGE;
-    totalDamage += swordCount * Sword.DAMAGE;
+    totalDamage += handgunCount * Weapon.HANDGUN.getDamage();
+    totalDamage += rifleCount * Weapon.RIFLE.getDamage();
+    totalDamage += swordCount * Weapon.SWORD.getDamage();
     return totalDamage;
   }
 
@@ -49,9 +45,8 @@ public class Player {
     this.damage = damage;
   }
 
-  public int giveDamage(int damage) {
+  public void giveDamage(int damage) {
     healthy -= damage;
-    return healthy;
   }
 
   public int getMoney() {
@@ -68,9 +63,9 @@ public class Player {
 
   public int getHealthy() {
     int totalHealth = healthy;
-    totalHealth += lightArmorCount * LightArmor.DAMAGE;
-    totalHealth += midArmorCount * MidArmor.DAMAGE;
-    totalHealth += heavyArmorCount * WeightyArmor.DAMAGE;
+    totalHealth += lightArmorCount * Armor.LIGHT.getDamage();
+    totalHealth += midArmorCount * Armor.MID.getDamage();
+    totalHealth += heavyArmorCount * Armor.HEAVY.getDamage();
     return totalHealth;
   }
 
@@ -88,62 +83,38 @@ public class Player {
 
   public void addLightArmor() {
     lightArmorCount++;
-    money -= LightArmor.MONEY;
+    money -= Armor.LIGHT.getMoney();
     printPlayer();
   }
 
   public void addMidArmor() {
     midArmorCount++;
-    money -= MidArmor.MONEY;
+    money -= Armor.MID.getMoney();
     printPlayer();
   }
 
   public void addHeavyArmor() {
     heavyArmorCount++;
-    money -= LightArmor.MONEY;
+    money -= Armor.HEAVY.getMoney();
     printPlayer();
   }
 
   public void addHandgun() {
     handgunCount++;
-    money -= Handgun.MONEY;
+    money -= Weapon.HANDGUN.getMoney();
     printPlayer();
   }
 
   public void addRifle() {
     rifleCount++;
-    money -= Rifle.MONEY;
+    money -= Weapon.RIFLE.getMoney();
     printPlayer();
   }
 
   public void addSword() {
     swordCount++;
-    money -= Sword.MONEY;
+    money -= Weapon.SWORD.getMoney();
     printPlayer();
-  }
-
-  public int getHandgunCount() {
-    return handgunCount;
-  }
-
-  public int getRifleCount() {
-    return rifleCount;
-  }
-
-  public int getSwordCount() {
-    return swordCount;
-  }
-
-  public int getLightArmorCount() {
-    return lightArmorCount;
-  }
-
-  public int getMidArmorCount() {
-    return midArmorCount;
-  }
-
-  public int getHeavyArmorCount() {
-    return heavyArmorCount;
   }
 
   public void addWater() {
@@ -200,5 +171,9 @@ public class Player {
       System.out.println("Sorry, You don't have enough money...");
       return false;
     }
+  }
+
+  public void resetHealth() {
+    setHealthy(character.getHealthy());
   }
 }

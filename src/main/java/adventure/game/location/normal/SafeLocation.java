@@ -1,11 +1,9 @@
 package adventure.game.location.normal;
 
-import adventure.game.character.Archer;
-import adventure.game.character.Knight;
-import adventure.game.character.Samurai;
+import adventure.game.location.Location;
 import adventure.game.player.Player;
 
-public class SafeLocation implements NormalLocation {
+public class SafeLocation implements Location {
 
   private final Player player;
 
@@ -14,19 +12,10 @@ public class SafeLocation implements NormalLocation {
     onLocation();
   }
 
-  public static void resetHealthy(Player player) {
-    switch (player.getName()) {
-      case "Knight" -> player.setHealthy(Knight.HEALTHY);
-      case "Samurai" -> player.setHealthy(Samurai.HEALTHY);
-      case "Archer" -> player.setHealthy(Archer.HEALTHY);
-      default -> player.setHealthy(0);
-    }
-  }
-
   @Override
   public boolean onLocation() {
     showMenu();
-    resetHealthy(player);
+    player.resetHealth();
     System.out.println("Health: " + player.getHealthy());
     return true;
   }

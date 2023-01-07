@@ -1,6 +1,6 @@
-package adventure.game.obstacle;
+package adventure.game.monster;
 
-public class Vampire implements Obstacle {
+public class Vampire implements Monster {
 
   public static final int DAMAGE = 4;
   public static final int MONEY = 7;
@@ -11,15 +11,5 @@ public class Vampire implements Obstacle {
   public int giveDamage(int damage) {
     health -= damage;
     return health;
-  }
-
-  @Override
-  public int getHealthy() {
-    return HEALTHY;
-  }
-
-  @Override
-  public int giveMoney() {
-    return MONEY;
   }
 }

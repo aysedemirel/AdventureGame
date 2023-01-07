@@ -43,7 +43,6 @@ public class Game {
       default -> player = new Player();
     }
     location = new SafeLocation(player);
-    SafeLocation.resetHealthy(player);
   }
 
   public void startGame() {

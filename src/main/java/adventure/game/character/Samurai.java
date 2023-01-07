@@ -2,9 +2,9 @@ package adventure.game.character;
 
 public class Samurai implements GameCharacter {
 
-  public static final int HEALTHY = 21;
-  public static final int DAMAGE = 5;
-  public static final int MONEY = 15;
+  private static final int HEALTHY = 21;
+  private static final int DAMAGE = 5;
+  private static final int MONEY = 15;
 
   public static String getCharMenu() {
     Samurai samurai = new Samurai();

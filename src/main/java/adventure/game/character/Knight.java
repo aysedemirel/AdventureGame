@@ -2,9 +2,9 @@ package adventure.game.character;
 
 public class Knight implements GameCharacter {
 
-  public static final int HEALTHY = 24;
-  public static final int DAMAGE = 8;
-  public static final int MONEY = 5;
+  private static final int HEALTHY = 24;
+  private static final int DAMAGE = 8;
+  private static final int MONEY = 5;
 
   public static String getCharMenu() {
     Knight knight = new Knight();
