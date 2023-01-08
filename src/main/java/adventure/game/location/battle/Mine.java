@@ -1,9 +1,13 @@
 package adventure.game.location.battle;
 
-import adventure.game.monster.Vampire;
+import adventure.game.monster.Snake;
 import adventure.game.monster.Zombie;
 import adventure.game.player.Player;
+import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author aysedemireldeniz
+ */
 public class Mine extends BattleLocation {
 
   public Mine(Player player) {
@@ -23,11 +27,10 @@ public class Mine extends BattleLocation {
 
   @Override
   void createMonsters() {
-    // FIXME: Create with snake
-//    randomMonster = new Vampire[ThreadLocalRandom.current().nextInt(1, 3)];
-//    for (int i = 0; i < randomMonster.length; i++) {
-//      randomMonster[i] = new Vampire();
-//    }
+    randomMonster = new Snake[ThreadLocalRandom.current().nextInt(1, 5)];
+    for (int i = 0; i < randomMonster.length; i++) {
+      randomMonster[i] = new Snake();
+    }
   }
 
   @Override
@@ -35,9 +38,9 @@ public class Mine extends BattleLocation {
     if (monsterHealth <= 0) {
       killMonster();
     } else {
-      // FIXME: Snake.DAMAGE
-      player.attackToPlayer(Vampire.DAMAGE);
-      System.out.println("One attack from the snake : " + Vampire.DAMAGE);
+      int snakeDamage = Snake.getDamage();
+      player.attackToPlayer(snakeDamage);
+      System.out.println("One attack from the snake : " + snakeDamage);
     }
     System.out.println("Your left health : " + player.getHealthy());
   }
