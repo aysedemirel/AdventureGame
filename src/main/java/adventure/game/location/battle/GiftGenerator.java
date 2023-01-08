@@ -102,11 +102,11 @@ public class GiftGenerator {
   }
 
   public Object getRandomGift() {
-    String gift = all.get(ThreadLocalRandom.current().nextInt(all.size() - 1));
+    String gift = all.get(ThreadLocalRandom.current().nextInt(all.size()));
     Object giftResult = NOTHING;
     switch (gift) {
       case WEAPON -> {
-        Weapon w = weaponList.get(ThreadLocalRandom.current().nextInt(weaponList.size() - 1));
+        Weapon w = weaponList.get(ThreadLocalRandom.current().nextInt(weaponList.size()));
         switch (w) {
           case HANDGUN -> giftResult = Weapon.HANDGUN;
           case RIFLE -> giftResult = Weapon.RIFLE;
@@ -115,7 +115,7 @@ public class GiftGenerator {
         }
       }
       case ARMOR -> {
-        Armor a = armorList.get(ThreadLocalRandom.current().nextInt(armorList.size() - 1));
+        Armor a = armorList.get(ThreadLocalRandom.current().nextInt(armorList.size()));
         switch (a) {
           case HEAVY -> giftResult = Armor.HEAVY;
           case MID -> giftResult = Armor.MID;
@@ -124,7 +124,7 @@ public class GiftGenerator {
         }
       }
       case MONEY -> {
-        int m = moneyList.get(ThreadLocalRandom.current().nextInt(moneyList.size() - 1));
+        int m = moneyList.get(ThreadLocalRandom.current().nextInt(moneyList.size()));
         giftResult = "money-> " + m;
       }
       default -> System.out.println("Sorry but you can not earn anything...");

@@ -28,7 +28,7 @@ public class Mine extends BattleLocation {
 
   @Override
   void createMonsters() {
-    randomMonster = new Snake[ThreadLocalRandom.current().nextInt(1, 5)];
+    randomMonster = new Snake[ThreadLocalRandom.current().nextInt(1, 6)];
     for (int i = 0; i < randomMonster.length; i++) {
       randomMonster[i] = new Snake();
     }

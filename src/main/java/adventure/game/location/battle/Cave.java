@@ -26,7 +26,7 @@ public class Cave extends BattleLocation {
 
   @Override
   public void createMonsters() {
-    randomMonster = new Zombie[ThreadLocalRandom.current().nextInt(1, 3)];
+    randomMonster = new Zombie[ThreadLocalRandom.current().nextInt(1, 4)];
     for (int i = 0; i < randomMonster.length; i++) {
       randomMonster[i] = new Zombie();
     }
