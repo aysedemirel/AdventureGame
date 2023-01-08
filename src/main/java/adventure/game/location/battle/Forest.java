@@ -15,6 +15,16 @@ public class Forest extends BattleLocation {
   }
 
   @Override
+  public String getName() {
+    return "FOREST";
+  }
+
+  @Override
+  public String getMonsterName() {
+    return "Vampire";
+  }
+
+  @Override
   public void createMonsters() {
     randomMonster = new Vampire[ThreadLocalRandom.current().nextInt(1, 3)];
     for (int i = 0; i < randomMonster.length; i++) {
@@ -23,8 +33,23 @@ public class Forest extends BattleLocation {
   }
 
   @Override
-  public String getMonsterName() {
-    return "Vampire";
+  void fightWithMonster(int monsterHealth) {
+    if (monsterHealth <= 0) {
+      killMonster();
+    } else {
+      player.attackToPlayer(Vampire.DAMAGE);
+      System.out.println("One attack from the vampire : " + Vampire.DAMAGE);
+    }
+    System.out.println("Your left health : " + player.getHealthy());
+  }
+
+  @Override
+  void earnGift(int leftMonster) {
+    if (leftMonster == 0 && player.getHealthy() > 0) {
+      System.out.println(
+          "Wow you killed all of the vampires in the river. So you earned 'WOODEN'...");
+      player.addWooden();
+    }
   }
 
   @Override
@@ -40,34 +65,5 @@ public class Forest extends BattleLocation {
     System.out.println(st);
   }
 
-  @Override
-  void fightWithMonster(int monsterHealth) {
-    if (monsterHealth <= 0) {
-      killMonster();
-    } else {
-      player.attackToPlayer(Vampire.DAMAGE);
-      System.out.println("One attack from the vampire : " + Vampire.DAMAGE);
-    }
-    System.out.println("Your left health : " + player.getHealthy());
-  }
 
-  @Override
-  public void showMenu() {
-    showMenu("FOREST");
-    isMenuActive = true;
-  }
-
-  @Override
-  public String getName() {
-    return "FOREST";
-  }
-
-  @Override
-  void earnGift(int leftMonster) {
-    if (leftMonster == 0 && player.getHealthy() > 0) {
-      System.out.println(
-          "Wow you killed all of the vampires in the river. So you earned 'WOODEN'...");
-      player.addWooden();
-    }
-  }
 }

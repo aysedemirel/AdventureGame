@@ -26,6 +26,12 @@ public abstract class BattleLocation implements Location {
 
   abstract void killMonster();
 
+  @Override
+  public void showMenu() {
+    showMenu(getName());
+    isMenuActive = true;
+  }
+
   public boolean isContinue(int leftMonster) {
     return player.getHealthy() > 0 && leftMonster > 0;
   }

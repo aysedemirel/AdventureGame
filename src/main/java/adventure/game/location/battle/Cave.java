@@ -9,10 +9,19 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Cave extends BattleLocation {
 
-
   public Cave(Player player) {
     this.player = player;
     onLocation();
+  }
+
+  @Override
+  public String getName() {
+    return "CAVE";
+  }
+
+  @Override
+  public String getMonsterName() {
+    return "Zombie";
   }
 
   @Override
@@ -24,8 +33,23 @@ public class Cave extends BattleLocation {
   }
 
   @Override
-  public String getMonsterName() {
-    return "Zombie";
+  void fightWithMonster(int monsterHealth) {
+    if (monsterHealth <= 0) {
+      killMonster();
+    } else {
+      player.attackToPlayer(Zombie.DAMAGE);
+      System.out.println("One attack from the zombie : " + Zombie.DAMAGE);
+    }
+    System.out.println("Your left health : " + player.getHealthy());
+  }
+
+  @Override
+  void earnGift(int leftMonster) {
+    if (leftMonster == 0 && player.getHealthy() > 0) {
+      System.out.println(
+          "Wow you killed all of the zombies in the river. So you earned 'FOOD'...");
+      player.addFood();
+    }
   }
 
   @Override
@@ -41,34 +65,5 @@ public class Cave extends BattleLocation {
     System.out.println(st);
   }
 
-  @Override
-  void fightWithMonster(int monsterHealth) {
-    if (monsterHealth <= 0) {
-      killMonster();
-    } else {
-      player.attackToPlayer(Zombie.DAMAGE);
-      System.out.println("One attack from the zombie : " + Zombie.DAMAGE);
-    }
-    System.out.println("Your left health : " + player.getHealthy());
-  }
 
-  @Override
-  public void showMenu() {
-    showMenu("CAVE");
-    isMenuActive = true;
-  }
-
-  @Override
-  public String getName() {
-    return "CAVE";
-  }
-
-  @Override
-  void earnGift(int leftMonster) {
-    if (leftMonster == 0 && player.getHealthy() > 0) {
-      System.out.println(
-          "Wow you killed all of the zombies in the river. So you earned 'FOOD'...");
-      player.addFood();
-    }
-  }
 }

@@ -15,6 +15,16 @@ public class River extends BattleLocation {
   }
 
   @Override
+  public String getName() {
+    return "RIVER";
+  }
+
+  @Override
+  public String getMonsterName() {
+    return "Bear";
+  }
+
+  @Override
   public void createMonsters() {
     randomMonster = new Bear[ThreadLocalRandom.current().nextInt(1, 3)];
     for (int i = 0; i < randomMonster.length; i++) {
@@ -23,8 +33,23 @@ public class River extends BattleLocation {
   }
 
   @Override
-  public String getMonsterName() {
-    return "Bear";
+  void fightWithMonster(int monsterHealth) {
+    if (monsterHealth <= 0) {
+      killMonster();
+    } else {
+      player.attackToPlayer(Bear.DAMAGE);
+      System.out.println("One attack from the bear : " + Bear.DAMAGE);
+    }
+    System.out.println("Your left health : " + player.getHealthy());
+  }
+
+  @Override
+  void earnGift(int leftMonster) {
+    if (leftMonster == 0 && player.getHealthy() > 0) {
+      System.out.println(
+          "Wow you killed all of the bears in the river. So you earned 'WATER'...");
+      player.addWater();
+    }
   }
 
   @Override
@@ -40,34 +65,5 @@ public class River extends BattleLocation {
     System.out.println(st);
   }
 
-  @Override
-  void fightWithMonster(int monsterHealth) {
-    if (monsterHealth <= 0) {
-      killMonster();
-    } else {
-      player.attackToPlayer(Bear.DAMAGE);
-      System.out.println("One attack from the bear : " + Bear.DAMAGE);
-    }
-    System.out.println("Your left health : " + player.getHealthy());
-  }
 
-  @Override
-  public void showMenu() {
-    showMenu("RIVER");
-    isMenuActive = true;
-  }
-
-  @Override
-  public String getName() {
-    return "RIVER";
-  }
-
-  @Override
-  void earnGift(int leftMonster) {
-    if (leftMonster == 0 && player.getHealthy() > 0) {
-      System.out.println(
-          "Wow you killed all of the bears in the river. So you earned 'WATER'...");
-      player.addWater();
-    }
-  }
 }
