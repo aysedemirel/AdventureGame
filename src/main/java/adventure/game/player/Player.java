@@ -10,6 +10,7 @@ import java.util.Locale;
  */
 public class Player {
 
+  private boolean isMineFinish = false;
   private int waterCount = 0;
   private int woodenCount = 0;
   private int foodCount = 0;
@@ -165,6 +166,14 @@ public class Player {
 
   public boolean isRiverFinish() {
     return waterCount > 0;
+  }
+
+  public boolean isMineFinish() {
+    return isMineFinish;
+  }
+
+  public void setMineFinish(boolean isMineFinish) {
+    this.isMineFinish = isMineFinish;
   }
 
   public boolean isMoneyEnough(int money) {

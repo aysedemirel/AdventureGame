@@ -6,6 +6,7 @@ import adventure.game.character.Samurai;
 import adventure.game.location.Location;
 import adventure.game.location.battle.Cave;
 import adventure.game.location.battle.Forest;
+import adventure.game.location.battle.Mine;
 import adventure.game.location.battle.River;
 import adventure.game.location.normal.SafeLocation;
 import adventure.game.location.normal.ToolStoreLocation;
@@ -96,6 +97,9 @@ public class Game {
     if (!player.isRiverFinish()) {
       st += "| River(5)                             |\n";
     }
+    if (!player.isMineFinish()) {
+      st += "| Mine(8)                              |\n";
+    }
     st += """
         | Stay same location (6)               |
         | Print player info (7)                |
@@ -126,6 +130,13 @@ public class Game {
           wrongInput();
         } else {
           location = new River(player);
+        }
+      }
+      case '8' -> {
+        if (player.isMineFinish()) {
+          wrongInput();
+        } else {
+          location = new Mine(player);
         }
       }
       case '7' -> player.printPlayer();
