@@ -67,32 +67,32 @@ public class ToolStoreLocation implements Location {
     switch (ch) {
       case 'h' -> {
         if (player.isMoneyEnough(Weapon.HANDGUN.getMoney())) {
-          player.addHandgun();
+          player.addHandgun(true);
         }
       }
       case 'r' -> {
         if (player.isMoneyEnough(Weapon.RIFLE.getMoney())) {
-          player.addRifle();
+          player.addRifle(true);
         }
       }
       case 's' -> {
         if (player.isMoneyEnough(Weapon.SWORD.getMoney())) {
-          player.addSword();
+          player.addSword(true);
         }
       }
       case '1' -> {
         if (player.isMoneyEnough(Armor.LIGHT.getMoney())) {
-          player.addLightArmor();
+          player.addLightArmor(true);
         }
       }
       case '2' -> {
         if (player.isMoneyEnough(Armor.MID.getMoney())) {
-          player.addMidArmor();
+          player.addMidArmor(true);
         }
       }
       case '3' -> {
         if (player.isMoneyEnough(Armor.HEAVY.getMoney())) {
-          player.addHeavyArmor();
+          player.addHeavyArmor(true);
         }
       }
       default -> System.out.println("Please enter a correct input...");

@@ -85,39 +85,51 @@ public class Player {
     this.name = name;
   }
 
-  public void addLightArmor() {
+  public void addLightArmor(boolean isBuy) {
     lightArmorCount++;
-    money -= Armor.LIGHT.getMoney();
+    if (isBuy) {
+      money -= Armor.LIGHT.getMoney();
+    }
     printPlayer();
   }
 
-  public void addMidArmor() {
+  public void addMidArmor(boolean isBuy) {
     midArmorCount++;
-    money -= Armor.MID.getMoney();
+    if (isBuy) {
+      money -= Armor.MID.getMoney();
+    }
     printPlayer();
   }
 
-  public void addHeavyArmor() {
+  public void addHeavyArmor(boolean isBuy) {
     heavyArmorCount++;
-    money -= Armor.HEAVY.getMoney();
+    if (isBuy) {
+      money -= Armor.HEAVY.getMoney();
+    }
     printPlayer();
   }
 
-  public void addHandgun() {
+  public void addHandgun(boolean isBuy) {
     handgunCount++;
-    money -= Weapon.HANDGUN.getMoney();
+    if (isBuy) {
+      money -= Weapon.HANDGUN.getMoney();
+    }
     printPlayer();
   }
 
-  public void addRifle() {
+  public void addRifle(boolean isBuy) {
     rifleCount++;
-    money -= Weapon.RIFLE.getMoney();
+    if (isBuy) {
+      money -= Weapon.RIFLE.getMoney();
+    }
     printPlayer();
   }
 
-  public void addSword() {
+  public void addSword(boolean isBuy) {
     swordCount++;
-    money -= Weapon.SWORD.getMoney();
+    if (isBuy) {
+      money -= Weapon.SWORD.getMoney();
+    }
     printPlayer();
   }
 
