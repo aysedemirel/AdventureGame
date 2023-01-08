@@ -3,6 +3,7 @@ package adventure.game.location.battle;
 import adventure.game.location.Location;
 import adventure.game.monster.Monster;
 import adventure.game.player.Player;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author aysedemireldeniz
@@ -19,9 +20,11 @@ public abstract class BattleLocation implements Location {
 
   abstract void createMonsters();
 
-  abstract boolean fightWithMonster(int monsterHealth);
+  abstract void fightWithMonster(int monsterHealth);
 
   abstract void earnGift(int leftMonster);
+
+  abstract void killMonster();
 
   public boolean isContinue(int leftMonster) {
     return player.getHealthy() > 0 && leftMonster > 0;
@@ -36,13 +39,38 @@ public abstract class BattleLocation implements Location {
   }
 
   int controlMonsters(int leftMonster, int damage) {
-    int monsterHealth = randomMonster[leftMonster - 1].giveDamage(damage);
-    boolean isMonsterDead = fightWithMonster(monsterHealth);
+    boolean isPlayerAttackFirst = ThreadLocalRandom.current().nextBoolean();
+    int monsterIndex = leftMonster - 1;
+    if (isPlayerAttackFirst) {
+      playerAttack(monsterIndex, damage);
+    } else {
+      monsterAttack(monsterIndex, damage);
+    }
+    boolean isMonsterDead = !randomMonster[monsterIndex].isAlive();
     if (isMonsterDead) {
       leftMonster--;
       System.out.println("How many " + getMonsterName() + " are alive: " + leftMonster);
     }
     return leftMonster;
+  }
+
+  private void playerAttack(int monsterIndex, int damage) {
+    System.out.println("Player attack first");
+    randomMonster[monsterIndex].giveDamage(damage);
+    int monsterHealth = randomMonster[monsterIndex].getHealth();
+    fightWithMonster(monsterHealth);
+  }
+
+  private void monsterAttack(int monsterIndex, int damage) {
+    System.out.println("Monster attack first");
+    int monsterHealth = randomMonster[monsterIndex].getHealth();
+    fightWithMonster(monsterHealth);
+    if (player.getHealthy() > 0) {
+      randomMonster[monsterIndex].giveDamage(damage);
+      if (!randomMonster[monsterIndex].isAlive()) {
+        killMonster();
+      }
+    }
   }
 
   void showMenu(String location) {
@@ -86,9 +114,7 @@ public abstract class BattleLocation implements Location {
         }
         setMenuActive(false);
       }
-      case 'c' -> {
-        setMenuActive(false);
-      }
+      case 'c' -> setMenuActive(false);
       default -> {
         System.out.println("Please enter correct input...");
         fight();
@@ -117,13 +143,11 @@ public abstract class BattleLocation implements Location {
             |                 Be careful!!!! Giant %s... Ohh how many: %d              |
             +----------------------------------------------------------------------------+
             | Do you want to fight or run away?                                          |
-            | Don't forget first shoot is yours, but you hit once, %s will attack you! |
             | Fight (f)                                                                  |
             | Change the location (c)                                                    |
             +----------------------------------------------------------------------------+""",
         monsterName,
-        randomMonster.length,
-        monsterName);
+        randomMonster.length);
     System.out.println(st);
   }
 }

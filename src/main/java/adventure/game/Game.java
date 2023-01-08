@@ -85,15 +85,21 @@ public class Game {
             +--------------------------------------+
             | Safe area (1)                        |
             | Tool store (2)                       |
-            | Cave (3)     |%s|                    |
-            | Forest (4)   |%s|                    |
-            | River (5)    |%s|                    |
-            | Stay same location (6)               |
-            | Print player info (7)                |
-            +--------------------------------------+""",
-        location.getName(), player.isCaveFinish() ? "OK" : "NOK",
-        player.isForestFinish() ? "OK" : "NOK",
-        player.isRiverFinish() ? "OK" : "NOK");
+            """,
+        location.getName());
+    if (!player.isCaveFinish()) {
+      st += "| Cave(3)                              |\n";
+    }
+    if (!player.isForestFinish()) {
+      st += "| Forest(4)                            |\n";
+    }
+    if (!player.isRiverFinish()) {
+      st += "| River(5)                             |\n";
+    }
+    st += """
+        | Stay same location (6)               |
+        | Print player info (7)                |
+        +--------------------------------------+""";
     System.out.println(st);
   }
 
@@ -101,11 +107,34 @@ public class Game {
     switch (ch) {
       case '1' -> location = new SafeLocation(player);
       case '2' -> location = new ToolStoreLocation(player);
-      case '3' -> location = new Cave(player);
-      case '4' -> location = new Forest(player);
-      case '5' -> location = new River(player);
+      case '3' -> {
+        if (player.isCaveFinish()) {
+          wrongInput();
+        } else {
+          location = new Cave(player);
+        }
+      }
+      case '4' -> {
+        if (player.isForestFinish()) {
+          wrongInput();
+        } else {
+          location = new Forest(player);
+        }
+      }
+      case '5' -> {
+        if (player.isRiverFinish()) {
+          wrongInput();
+        } else {
+          location = new River(player);
+        }
+      }
       case '7' -> player.printPlayer();
-      default -> location.onLocation();
+      default -> wrongInput();
     }
+  }
+
+  private void wrongInput() {
+    System.out.println("Wrong input");
+    location.onLocation();
   }
 }

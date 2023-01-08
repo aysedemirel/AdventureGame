@@ -28,25 +28,27 @@ public class River extends BattleLocation {
   }
 
   @Override
-  boolean fightWithMonster(int monsterHealth) {
-    boolean isBearDead = false;
+  void killMonster() {
+    player.addMoney(Bear.MONEY);
+    String st = String.format("""
+        +----------------------------+
+        | Wooow you killed one bear. |
+        +----------------------------+
+        | You earned %d              |
+        | Your total money: %d       |
+        +----------------------------+""", Bear.MONEY, player.getMoney());
+    System.out.println(st);
+  }
+
+  @Override
+  void fightWithMonster(int monsterHealth) {
     if (monsterHealth <= 0) {
-      player.addMoney(Bear.MONEY);
-      String st = String.format("""
-          +----------------------------+
-          | Wooow you killed one bear. |
-          +----------------------------+
-          | You earned %d              |
-          | Your total money: %d       |
-          +----------------------------+""", Bear.MONEY, player.getMoney());
-      System.out.println(st);
-      isBearDead = true;
+      killMonster();
     } else {
       player.attackToPlayer(Bear.DAMAGE);
       System.out.println("One attack from the bear : " + Bear.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());
-    return isBearDead;
   }
 
   @Override

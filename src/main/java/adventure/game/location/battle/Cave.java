@@ -29,25 +29,27 @@ public class Cave extends BattleLocation {
   }
 
   @Override
-  boolean fightWithMonster(int monsterHealth) {
-    boolean isZombieDead = false;
+  public void killMonster() {
+    player.addMoney(Zombie.MONEY);
+    String st = String.format("""
+        +------------------------------+
+        | Wooow you killed one zombie. |
+        +------------------------------+
+        | You earned %d                |
+        | Your total money: %d         |
+        +------------------------------+""", Zombie.MONEY, player.getMoney());
+    System.out.println(st);
+  }
+
+  @Override
+  void fightWithMonster(int monsterHealth) {
     if (monsterHealth <= 0) {
-      player.addMoney(Zombie.MONEY);
-      String st = String.format("""
-          +------------------------------+
-          | Wooow you killed one zombie. |
-          +------------------------------+
-          | You earned %d                |
-          | Your total money: %d         |
-          +------------------------------+""", Zombie.MONEY, player.getMoney());
-      System.out.println(st);
-      isZombieDead = true;
+      killMonster();
     } else {
       player.attackToPlayer(Zombie.DAMAGE);
       System.out.println("One attack from the zombie : " + Zombie.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());
-    return isZombieDead;
   }
 
   @Override

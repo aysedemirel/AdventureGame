@@ -28,25 +28,27 @@ public class Forest extends BattleLocation {
   }
 
   @Override
-  boolean fightWithMonster(int monsterHealth) {
-    boolean isVampireDead = false;
+  void killMonster() {
+    player.addMoney(Vampire.MONEY);
+    String st = String.format("""  
+        +-------------------------------+
+        | Wooow you killed one vampire. |
+        +-------------------------------+
+        | You earned %d                 |
+        | Your total money: %d          |
+        +-------------------------------+""", Vampire.MONEY, player.getMoney());
+    System.out.println(st);
+  }
+
+  @Override
+  void fightWithMonster(int monsterHealth) {
     if (monsterHealth <= 0) {
-      player.addMoney(Vampire.MONEY);
-      String st = String.format("""  
-          +-------------------------------+
-          | Wooow you killed one vampire. |
-          +-------------------------------+
-          | You earned %d                 |
-          | Your total money: %d          |
-          +-------------------------------+""", Vampire.MONEY, player.getMoney());
-      System.out.println(st);
-      isVampireDead = true;
+      killMonster();
     } else {
       player.attackToPlayer(Vampire.DAMAGE);
       System.out.println("One attack from the vampire : " + Vampire.DAMAGE);
     }
     System.out.println("Your left health : " + player.getHealthy());
-    return isVampireDead;
   }
 
   @Override

@@ -11,8 +11,17 @@ public class Bear implements Monster {
   private int health = HEALTHY;
 
   @Override
-  public int giveDamage(int damage) {
+  public void giveDamage(int damage) {
     health -= damage;
+  }
+
+  @Override
+  public int getHealth() {
     return health;
+  }
+
+  @Override
+  public boolean isAlive() {
+    return health > 0;
   }
 }
