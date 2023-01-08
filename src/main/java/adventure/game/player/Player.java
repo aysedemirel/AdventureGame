@@ -137,7 +137,7 @@ public class Player {
   }
 
   public boolean isWin() {
-    return waterCount > 0 && foodCount > 0 && woodenCount > 0;
+    return waterCount > 0 && foodCount > 0 && woodenCount > 0 && isMineFinish;
   }
 
   public void printPlayer() {

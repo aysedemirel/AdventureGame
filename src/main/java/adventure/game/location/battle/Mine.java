@@ -50,8 +50,7 @@ public class Mine extends BattleLocation {
     if (leftMonster == 0 && player.getHealthy() > 0) {
       System.out.println(
           "Wow you killed all of the snakes in the mine.");
-      // TODO: player should finish mine
-      // player.addWooden();
+      player.setMineFinish(true);
     }
   }
 
